@@ -53,6 +53,17 @@ class WS01Step01AssignmentActivity : AppCompatActivity() {
     // get the Int "counter" value from the "savedState" bundle, use "KEY_COUNT_ARGUMENT" as a key.
     // Update text value on screen.
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_COUNT_ARGUMENT, counter)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        counter = savedInstanceState.getInt(KEY_COUNT_ARGUMENT)
+        tvValue?.text = getString(R.string.ws01_step01_activity_counter_text, counter)
+    }
+
     override fun onDestroy() {
         // Logging onDestroy()
         Log.d(TAG, "${LOG_PREFIX}::onDestroy")
